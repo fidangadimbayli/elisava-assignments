@@ -1,0 +1,162 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const { id } = Astro.params;
+
+const reqUrl = `https://pokeapi.co/api/v2/pokemon/${id}`;
+const response = await fetch(reqUrl);
+const data = await response.json();
+
+console.log(data);
+
+---
+<Layout title={data.name}>
+  <section class="pokemon-details">
+    <h1 class="poke-title">#{data.id} — {data.name.toUpperCase()}</h1>
+    <img class="poke-img" src={data.sprites.front_default} alt={data.name} />
+
+    <div class="grid-info">
+      <div class="card">
+        <h2>Type</h2>
+        <div class="types">
+          {data.types.map(typeInfo => (
+            <span class="type-badge">{typeInfo.type.name}</span>
+          ))}
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Abilities</h2>
+        <ul>
+          {data.abilities.map(abilityInfo => (
+            <li>{abilityInfo.ability.name}</li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Stats</h2>
+        <ul class="stats-list">
+          {data.stats.map(statInfo => (
+            <li>
+              <span>{statInfo.stat.name}</span>
+              <div class="stat-bar">
+                <div class="bar-fill" style={`width: ${statInfo.base_stat / 2}%`}></div>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Details</h2>
+        <p>Height: {data.height / 10} m</p>
+        <p>Weight: {data.weight / 10} kg</p>
+      </div>
+    </div>
+
+    <a class="back-button" href="/pokedex?page=1">← Back to Pokedex</a>
+  </section>
+</Layout>
+
+<style>
+  .pokemon-details {
+    padding: 40px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .poke-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #3245ff;
+    margin-bottom: 20px;
+  }
+
+  .poke-img {
+    width: 180px;
+    height: auto;
+    margin-bottom: 30px;
+  }
+
+  .grid-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    text-align: left;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+    color: #444;
+    margin-bottom: 10px;
+  }
+
+  ul {
+    padding-left: 16px;
+    color: #555;
+  }
+
+  .types {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .type-badge {
+    padding: 5px 10px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #3245ff, #bc52ee);
+    color: white;
+    font-size: 0.9rem;
+    text-transform: capitalize;
+  }
+
+  .stats-list {
+    list-style: none;
+    padding: 0;
+  }
+
+  .stats-list li {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+  }
+
+  .stat-bar {
+    background-color: #eee;
+    border-radius: 12px;
+    overflow: hidden;
+    height: 10px;
+    margin-top: 4px;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    border-radius: 12px;
+  }
+
+  .back-button {
+    display: inline-block;
+    text-decoration: none;
+    background: #ff5959;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-weight: 600;
+    transition: background 0.2s;
+  }
+
+  .back-button:hover {
+    background: #e03c3c;
+  }
+</style>

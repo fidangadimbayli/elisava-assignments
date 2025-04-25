@@ -1,0 +1,110 @@
+---
+import pokemonLogo from '../assets/pokemon.svg';
+---
+<section id="hero">
+  <div class="image-container">
+    <a href="https://pokeapi.co/" target="_blank">
+      <img class="shining-image" src={pokemonLogo.src} width="640" alt="Pokedex API Homepage" />
+    </a>
+  </div>
+
+  <h1>✨ Hey Mr Pelayo! ✨</h1>
+  <p class="subtext">Your adventure begins now. Discover, collect, and become the ultimate Pokémon Master!</p>
+
+  <section id="links">
+    <a class="button" href="https://pokeapi.co/" target="_blank">🌐 Visit the PokéAPI</a>
+  </section>
+</section>
+
+<style>
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #fefeff 0%, #ffe9f9 50%, #e4e9ff 100%);
+    color: #1e2a78;
+  }
+
+  #hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+  }
+
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    margin-bottom: 40px;
+  }
+
+  .shining-image {
+    position: relative;
+    z-index: 1;
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease;
+  }
+
+  .image-container:hover .shining-image {
+    transform: scale(1.05);
+  }
+
+  .image-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.6) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    z-index: 2;
+    transform: skewX(-25deg);
+    animation: shine 2.5s infinite;
+  }
+
+  @keyframes shine {
+    0% {
+      left: -75%;
+    }
+    100% {
+      left: 125%;
+    }
+  }
+
+  h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .subtext {
+    font-size: 1.25rem;
+    color: #5c5f77;
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #links .button {
+    background: linear-gradient(83.21deg, #3245ff 0%, #bc52ee 100%);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  #links .button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  }
+</style>

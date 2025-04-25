@@ -1,0 +1,110 @@
+---
+import Layout from '../layouts/Layout.astro';
+import pokemonWorldImage from '../assets/background.svg'; // Replace with a better one if needed!
+---
+
+<Layout title="About Pokémon World">
+  <section class="about-section">
+    <div class="about-container">
+      <h1>🌍 Welcome to the World of Pokémon!</h1>
+      <p class="intro">
+        The Pokémon world is filled with magical creatures, powerful trainers, and thrilling adventures. 
+        From the grasslands of Kanto to the icy peaks of Sinnoh, every corner holds a new challenge.
+      </p>
+
+      <img class="about-image" src={pokemonWorldImage.src} alt="Pokémon World" />
+
+      <div class="fun-facts">
+        <h2>✨ Did You Know?</h2>
+        <ul>
+          <li>There are over 1000 Pokémon discovered across different generations!</li>
+          <li>Ash Ketchum was 10 years old... for over 20 years!</li>
+          <li>The word "Pokémon" comes from “Pocket Monsters.”</li>
+        </ul>
+      </div>
+
+      <div class="actions">
+        <a href="/pokedex?page=1" class="btn">🔍 Explore the Pokédex</a>
+        <a href="https://www.pokemon.com/us/pokedex/" class="btn secondary" target="_blank">🌐 Learn More on Pokémon.com</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+.about-section {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #fefefe, #f2e5ff);
+  text-align: center;
+}
+
+.about-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #3245ff;
+  margin-bottom: 20px;
+}
+
+.intro {
+  font-size: 1.2rem;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  margin-bottom: 40px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.1);
+}
+
+.fun-facts {
+  background: #fff;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+  text-align: left;
+  margin-bottom: 40px;
+}
+
+.fun-facts ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: linear-gradient(to right, #3245ff, #bc52ee);
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.btn.secondary {
+  background: #e0e0e0;
+  color: #333;
+}
+</style>
